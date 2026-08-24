@@ -48,6 +48,28 @@
   }
   addEventListener('pointerdown', function(){ tick(700,.12); }, {passive:true});
 
+  /* scroll progress rail (right side) + soft section-change tick */
+  (function(){
+    var rail=document.createElement('div'); rail.className='scroll-rail'; rail.setAttribute('aria-hidden','true');
+    rail.innerHTML='<div class="sr-track"><div class="sr-fill"></div><div class="sr-dot"></div><div class="sr-pct">0%</div></div>';
+    document.body.appendChild(rail);
+    var fill=rail.querySelector('.sr-fill'), dot=rail.querySelector('.sr-dot'), pct=rail.querySelector('.sr-pct');
+    var sections=[].slice.call(document.querySelectorAll('section, .statement'));
+    var last=-1, hideT;
+    function upd(){
+      var max=document.documentElement.scrollHeight-innerHeight;
+      var prog=max>0 ? Math.min(1,Math.max(0,(scrollY||pageYOffset)/max)) : 0;
+      fill.style.transform='scaleY('+prog+')';
+      dot.style.top=(prog*100)+'%'; pct.style.top=(prog*100)+'%';
+      pct.textContent=Math.round(prog*100)+'%';
+      rail.classList.add('active'); clearTimeout(hideT); hideT=setTimeout(function(){ rail.classList.remove('active'); },900);
+      var mid=(scrollY||pageYOffset)+innerHeight*0.4, idx=0;
+      for(var i=0;i<sections.length;i++){ if(sections[i].offsetTop<=mid) idx=i; }
+      if(idx!==last){ if(last!==-1) tick(500,.05); last=idx; }   // soft tick only when sound is on
+    }
+    addEventListener('scroll', upd, {passive:true}); addEventListener('resize', upd); upd();
+  })();
+
   /* custom cursor + trailing line (desktop, motion allowed) */
   if(!isTouch && !reduce){
     document.body.classList.add('cursor-on');
