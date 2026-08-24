@@ -111,8 +111,8 @@ section{padding:clamp(56px,9vw,104px) 0}
 .wins li span{color:var(--fg);font-weight:600}
 .convert-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;letter-spacing:.05em;color:var(--accent-ink);border-bottom:1px solid rgba(180,83,9,.35);padding-bottom:4px;transition:border-color .2s}
 .convert-link:hover{border-color:var(--accent-ink)}
-.convert-shot{margin:0;position:relative}
-.convert-shot img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(33,28,22,.35);background:var(--surface)}
+.convert-shot{margin:0;display:flex;flex-direction:column;align-items:center}
+.convert-shot img{width:100%;max-width:360px;height:auto;border-radius:16px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(33,28,22,.35);background:var(--surface)}
 .convert-shot figcaption{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:center}
 
 /* ---------- services ---------- */

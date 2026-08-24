@@ -21,9 +21,10 @@
     document.querySelectorAll('#navlinks a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
   }
 
-  /* sound (WebAudio, no files; off by default) */
-  var soundOn=false, actx=null;
+  /* sound (WebAudio, no files; on by default — first click/tap unlocks audio) */
+  var soundOn=true, actx=null;
   var btn=document.getElementById('sound'), lbl=document.getElementById('sound-label');
+  if(btn){ btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); if(lbl) lbl.textContent='Sound on'; }
   function ctx(){ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); return actx; }
   function tick(f,v){
     if(!soundOn) return;
