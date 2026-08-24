@@ -13,6 +13,14 @@
   var hdr = document.getElementById('hdr');
   addEventListener('scroll', function(){ hdr.classList.toggle('scrolled', scrollY>8); }, {passive:true});
 
+  /* mobile menu */
+  var menuBtn = document.getElementById('menuBtn');
+  if(menuBtn){
+    function setMenu(open){ hdr.classList.toggle('menu-open', open); menuBtn.setAttribute('aria-expanded', open); menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); }
+    menuBtn.addEventListener('click', function(){ setMenu(!hdr.classList.contains('menu-open')); });
+    document.querySelectorAll('#navlinks a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  }
+
   /* sound (WebAudio, no files; off by default) */
   var soundOn=false, actx=null;
   var btn=document.getElementById('sound'), lbl=document.getElementById('sound-label');

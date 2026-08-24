@@ -17,9 +17,14 @@
 
   <header id="hdr"><div class="wrap"><nav>
     <a class="brand" href="#top">Dhruv <em>Singh</em></a>
-    <div class="navlinks">
-      <a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+    <div class="nav-right">
+      <div class="navlinks" id="navlinks">
+        <a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </div>
       <button class="sound-toggle" id="sound" aria-pressed="false"><span class="dotled"></span><span id="sound-label">Sound off</span></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav></div></header>
 
@@ -44,7 +49,7 @@
         <span class="eyebrow-label reveal">01 — Projects</span>
       </div>
       <div class="work-grid">
-        <a class="card reveal" href="#" aria-label="GoatSZN case study">
+        <a class="card reveal" href="case-goatszn.html" aria-label="GoatSZN case study">
           <img class="shot" src="assets/goatszn-card.jpg" width="1600" height="1000" loading="lazy"
                alt="GoatSZN e-commerce homepage — editorial 'Legends, worn heavy' hero over a lineup of sports icons" />
           <div class="card-meta"><div><h3>GoatSZN</h3><p>Streetwear brand &amp; e-commerce build</p></div><span class="tag tag-live">Live</span></div>
@@ -54,12 +59,20 @@
                alt="wealtr dashboard — net-worth overview with allocation donut, lifetime chart and recent activity feed" />
           <div class="card-meta"><div><h3>wealtr</h3><p>Personal finance &amp; net-worth app · iOS + Android</p></div><span class="tag tag-live">Live</span></div>
         </a>
-        <a class="card reveal" href="#" aria-label="Artisan coffee roastery concept">
-          <div class="thumb t-coffee"><span class="label">Roastery</span><span class="sub">Imagery coming soon</span></div>
-          <div class="card-meta"><div><h3>Artisan Coffee Roastery</h3><p>E-commerce &amp; brand concept</p></div><span class="tag tag-concept">Concept</span></div>
+        <a class="card reveal" href="#" aria-label="Blue Tokai coffee redesign concept">
+          <figure class="shot-wrap">
+            <img class="shot" src="assets/coffee-card.jpg" width="1600" height="1000" loading="lazy"
+                 alt="Blue Tokai Coffee Roasters current homepage — 'Drop' concentrate hero carousel and round category tiles" />
+            <span class="shot-badge">Their current site</span>
+          </figure>
+          <div class="card-meta"><div><h3>Blue Tokai — Redesign</h3><p>Coffee roastery · self-initiated concept</p></div><span class="tag tag-concept">Concept</span></div>
         </a>
         <a class="card reveal" href="#" aria-label="Tata 1mg redesign concept">
-          <div class="thumb t-1mg"><span class="label">1mg&nbsp;Redesign</span><span class="sub">Concept · unaffiliated</span></div>
+          <figure class="shot-wrap">
+            <img class="shot" src="assets/1mg-card.jpg" width="1600" height="1000" loading="lazy"
+                 alt="Tata 1mg current homepage — dense pharmacy layout with banners and 'shop by health concern' tiles" />
+            <span class="shot-badge">Their current site</span>
+          </figure>
           <div class="card-meta"><div><h3>Tata 1mg — Redesign</h3><p>Pharmacy platform · self-initiated concept</p></div><span class="tag tag-concept">Concept</span></div>
         </a>
       </div>
