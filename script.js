@@ -26,9 +26,24 @@
   var btn=document.getElementById('sound'), lbl=document.getElementById('sound-label');
   if(btn){ btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); if(lbl) lbl.textContent='Sound on'; }
   function ctx(){ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); return actx; }
-  // unlock WebAudio on the first user gesture of ANY kind (scroll/wheel/touch/click/key) so scroll ticks work
-  function unlockAudio(){ try{ var c=ctx(); if(c.state==='suspended') c.resume(); }catch(e){} }
-  ['pointerdown','keydown','wheel','touchstart'].forEach(function(ev){ addEventListener(ev, unlockAudio, {passive:true}); });
+  // Browsers block audio until the first user gesture. On that first gesture (scroll/wheel/touch/click/key)
+  // ARM WebAudio immediately with a silent 1-sample buffer + resume, so ticks are audible from the first scroll
+  // instead of being lost while the async resume() is still waking the engine.
+  var unlocked=false;
+  function unlockAudio(e){
+    try{
+      var c=ctx();
+      if(c.state==='suspended') c.resume();
+      if(!unlocked){
+        var buf=c.createBuffer(1,1,22050), src=c.createBufferSource();
+        src.buffer=buf; src.connect(c.destination); src.start(0);
+        unlocked=true;
+        // instant "sound is live" tick on the first scroll/touch (click already ticks via pointerdown)
+        if(e && (e.type==='wheel' || e.type==='scroll' || e.type==='touchstart')){ setTimeout(function(){ tick(520,.07); }, 45); }
+      }
+    }catch(err){}
+  }
+  ['pointerdown','keydown','touchstart','wheel','scroll'].forEach(function(ev){ addEventListener(ev, unlockAudio, {passive:true}); });
   function tick(f,v){
     if(!soundOn) return;
     try{
