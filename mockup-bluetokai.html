@@ -47,7 +47,7 @@
   .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:14px 26px;border-radius:12px}
   .btn-p{background:var(--ink);color:var(--cream)}
   .btn-g{border:1px solid var(--line);background:var(--surface)}
-  .roast-hero{background:linear-gradient(160deg,#3a2417,#20140d);border-radius:24px;padding:30px;color:var(--cream);position:relative;overflow:hidden;box-shadow:0 40px 70px -40px rgba(32,20,13,.7)}
+  .roast-hero{background:linear-gradient(155deg,rgba(58,36,23,.82),rgba(32,20,13,.94)),url(assets/coffee-2.jpg);background-size:cover;background-position:center;border-radius:24px;padding:30px;color:var(--cream);position:relative;overflow:hidden;box-shadow:0 40px 70px -40px rgba(32,20,13,.7)}
   .roast-hero::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(181,101,29,.5),transparent 65%);top:-90px;right:-70px}
   .roast-hero .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#E3A867}
   .roast-hero h2{font-family:var(--serif);font-size:32px;font-weight:700;margin:10px 0 6px}
@@ -76,11 +76,9 @@
   @media(max-width:520px){.roasts{grid-template-columns:1fr}}
   .roast{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s}
   .roast:hover{transform:translateY(-4px);box-shadow:0 22px 40px -26px rgba(32,20,13,.4)}
-  .roast .top{height:150px;display:grid;place-items:center;position:relative}
-  .roast .bagart{width:66px;height:92px;border-radius:8px 8px 10px 10px;position:relative;box-shadow:0 12px 22px -10px rgba(0,0,0,.4)}
-  .roast .bagart::before{content:"";position:absolute;top:10px;left:10px;right:10px;height:20px;border-radius:4px;background:rgba(255,255,255,.16)}
-  .b1{background:linear-gradient(150deg,#6b3f22,#3a2114)}.b2{background:linear-gradient(150deg,#2f6b57,#123c30)}.b3{background:linear-gradient(150deg,#7a4a1c,#4a2a10)}
-  .t1{background:#efe4d2}.t2{background:#e6efe9}.t3{background:#f0e6d6}
+  .roast .top{height:190px;overflow:hidden}
+  .roast .top img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s var(--ease)}
+  .roast:hover .top img{transform:scale(1.06)}
   .roast .body{padding:18px}
   .roast .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d)}
   .roast h3{font-family:var(--serif);font-size:20px;font-weight:600;margin:6px 0 4px}
@@ -149,13 +147,13 @@
   <section class="blk"><div class="wrap">
     <div class="blk-head"><h2>This week's <em>roasts</em></h2><a>Shop all coffee →</a></div>
     <div class="roasts">
-      <div class="roast"><div class="top t1"><div class="bagart b1"></div></div>
+      <div class="roast"><div class="top"><img src="assets/coffee-2.jpg" alt="Roasted coffee beans" loading="lazy"></div>
         <div class="body"><div class="lvl">Medium roast</div><h3>Silver Oak</h3><div class="o">Blueberry · Honey · Citrus</div>
           <div class="foot"><span class="p">₹500</span><button class="a">Add · 250g</button></div></div></div>
-      <div class="roast"><div class="top t2"><div class="bagart b2"></div></div>
+      <div class="roast"><div class="top"><img src="assets/coffee-1.jpg" alt="Bags of roasted coffee beans" loading="lazy"></div>
         <div class="body"><div class="lvl">Light roast</div><h3>Microlot 22</h3><div class="o">Jasmine · Peach · Cane sugar</div>
           <div class="foot"><span class="p">₹680</span><button class="a">Add · 250g</button></div></div></div>
-      <div class="roast"><div class="top t3"><div class="bagart b3"></div></div>
+      <div class="roast"><div class="top"><img src="assets/coffee-3.jpg" alt="Cup of espresso coffee" loading="lazy"></div>
         <div class="body"><div class="lvl">Dark roast</div><h3>Vienna</h3><div class="o">Dark chocolate · Hazelnut</div>
           <div class="foot"><span class="p">₹550</span><button class="a">Add · 250g</button></div></div></div>
     </div>
