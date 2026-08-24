@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dhruv Singh — UI/UX Developer</title>
+<meta name="description" content="UI/UX developer building accessible, conversion-ready interfaces for healthcare & regulated brands." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="trail"></canvas>
+  <div id="dot" class="cur" aria-hidden="true"></div>
+  <div id="ring" class="cur" aria-hidden="true"></div>
+
+  <header id="hdr"><div class="wrap"><nav>
+    <a class="brand" href="#top">Dhruv <em>Singh</em></a>
+    <div class="navlinks">
+      <a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <button class="sound-toggle" id="sound" aria-pressed="false"><span class="dotled"></span><span id="sound-label">Sound off</span></button>
+    </div>
+  </nav></div></header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero"><div class="wrap">
+      <span class="eyebrow reveal"><span class="pulse"></span> Available for freelance · Healthcare &amp; pharma</span>
+      <h1 class="reveal">Interfaces people <em>actually trust.</em></h1>
+      <p class="lead reveal">I'm Dhruv — a UI/UX developer building accessible, conversion-ready front-ends for healthcare, pharma, and other regulated brands. Precise enough for procurement, human enough for patients.</p>
+      <div class="cta-row reveal">
+        <a href="#work" class="btn btn-primary" data-mag>View selected work
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a href="#contact" class="btn btn-ghost" data-mag>Get in touch</a>
+      </div>
+      <div class="scrollcue reveal"><span class="bar"></span> SCROLL TO EXPLORE</div>
+    </div></section>
+
+    <!-- WORK -->
+    <section id="work"><div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title reveal">Selected <em>work</em></h2>
+        <span class="eyebrow-label reveal">01 — Projects</span>
+      </div>
+      <div class="work-grid">
+        <a class="card reveal" href="#" aria-label="GoatSZN case study">
+          <img class="shot" src="assets/goatszn-card.jpg" width="1600" height="1000" loading="lazy"
+               alt="GoatSZN e-commerce homepage — editorial 'Legends, worn heavy' hero over a lineup of sports icons" />
+          <div class="card-meta"><div><h3>GoatSZN</h3><p>Streetwear brand &amp; e-commerce build</p></div><span class="tag tag-live">Live</span></div>
+        </a>
+        <a class="card reveal" href="#" aria-label="wealtr finance app">
+          <img class="shot" src="assets/wealtr-card.jpg" width="1600" height="1000" loading="lazy"
+               alt="wealtr dashboard — net-worth overview with allocation donut, lifetime chart and recent activity feed" />
+          <div class="card-meta"><div><h3>wealtr</h3><p>Personal finance &amp; net-worth app · iOS + Android</p></div><span class="tag tag-live">Live</span></div>
+        </a>
+        <a class="card reveal" href="#" aria-label="Artisan coffee roastery concept">
+          <div class="thumb t-coffee"><span class="label">Roastery</span><span class="sub">Imagery coming soon</span></div>
+          <div class="card-meta"><div><h3>Artisan Coffee Roastery</h3><p>E-commerce &amp; brand concept</p></div><span class="tag tag-concept">Concept</span></div>
+        </a>
+        <a class="card reveal" href="#" aria-label="Tata 1mg redesign concept">
+          <div class="thumb t-1mg"><span class="label">1mg&nbsp;Redesign</span><span class="sub">Concept · unaffiliated</span></div>
+          <div class="card-meta"><div><h3>Tata 1mg — Redesign</h3><p>Pharmacy platform · self-initiated concept</p></div><span class="tag tag-concept">Concept</span></div>
+        </a>
+      </div>
+    </div></section>
+
+    <!-- CONVERSION HIGHLIGHT -->
+    <section id="convert" class="convert"><div class="wrap convert-grid">
+      <div class="convert-copy reveal">
+        <span class="eyebrow-label">Conversion highlight · GoatSZN</span>
+        <h2 class="sec-title">Design that <em>moves product.</em></h2>
+        <p class="convert-lead">A bundle &amp; tiered-discount upsell I built into the GoatSZN product page — engineered to lift average order value, not just look good.</p>
+        <ul class="wins">
+          <li><span>Frequently bought together</span> — one tap adds a curated 3-item set to cart</li>
+          <li><span>Buy&nbsp;2 / Buy&nbsp;3+ tiers</span> — 15–20% off nudges shoppers to bigger carts</li>
+          <li><span>Live savings math</span> — ₹5,997 → ₹3,897 shown instantly, so value is obvious</li>
+        </ul>
+        <a href="https://www.goatszn.com/products/porsche-black-tee" class="convert-link" data-mag target="_blank" rel="noopener">See it live on goatszn.com
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      </div>
+      <figure class="convert-shot reveal">
+        <img src="assets/goatszn-bundle.jpg" width="836" height="1040" loading="lazy"
+             alt="GoatSZN 'Frequently bought together' bundle — three checkbox-selected products with Buy 2 15% off and Buy 3+ 20% off tiers and a Claim offer button showing ₹3,897 down from ₹5,997" />
+        <figcaption>Live · goatszn.com product page</figcaption>
+      </figure>
+    </div></section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services">
+      <div class="wrap"><div class="sec-head">
+        <h2 class="sec-title reveal">What I <em>do</em></h2>
+        <span class="eyebrow-label reveal">02 — Capabilities</span>
+      </div></div>
+      <div class="wrap"><div class="svc-grid">
+        <div class="svc reveal"><div class="n">01</div><h4>UI Development</h4><p>Pixel-precise, performant front-ends in React / Next.js &amp; clean HTML/CSS.</p></div>
+        <div class="svc reveal"><div class="n">02</div><h4>Design Systems</h4><p>Reusable, token-driven component libraries that scale across products.</p></div>
+        <div class="svc reveal"><div class="n">03</div><h4>Accessibility</h4><p>WCAG 2.2 AA/AAA &amp; ADA-aware builds — essential for regulated industries.</p></div>
+        <div class="svc reveal"><div class="n">04</div><h4>Data Dashboards</h4><p>Clear, readable data viz for clinical, analytics &amp; monitoring tools.</p></div>
+      </div></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about"><div class="wrap about-grid">
+      <div class="reveal">
+        <span class="eyebrow-label">03 — About</span>
+        <h2>I obsess over the details users <em>feel</em> but rarely notice.</h2>
+        <p>A developer living in the overlap between design and front-end engineering. I care about the millisecond of a hover, the contrast ratio of a label, and whether an interface earns trust on the first scroll.</p>
+        <p>For healthcare and pharma teams, that trust is the whole product. I build interfaces that are calm, compliant, and quietly delightful.</p>
+      </div>
+      <div class="portrait reveal">PORTRAIT / PHOTO</div>
+    </div></section>
+  </main>
+
+  <!-- PHILOSOPHY (dark — cursor trail turns cream here) -->
+  <section class="statement" data-dark><div class="wrap">
+    <p class="statement-kicker reveal">Philosophy</p>
+    <p class="statement-big reveal">Trust is a design decision. I build it into every pixel — <em>contrast, clarity, and calm</em> that regulated brands can stand behind.</p>
+  </div></section>
+
+  <!-- CONTACT (dark) -->
+  <section id="contact" class="contact" data-dark><div class="wrap">
+    <span class="eyebrow-label" style="color:rgba(243,238,228,.5)">04 — Contact</span>
+    <h2 style="margin-top:18px">Let's build something <em>worth trusting.</em></h2>
+    <a class="mailto" href="mailto:dhruvdesmond@gmail.com" data-mag>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      dhruvdesmond@gmail.com</a>
+    <p class="sub">Freelance UI/UX development · Open to healthcare, pharma &amp; product work.</p>
+  </div></section>
+
+  <footer><div class="wrap"><span>© 2026 Dhruv Singh</span><span>Cream edition · v1 mock</span></div></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
