@@ -26,6 +26,9 @@
   var btn=document.getElementById('sound'), lbl=document.getElementById('sound-label');
   if(btn){ btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); if(lbl) lbl.textContent='Sound on'; }
   function ctx(){ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); return actx; }
+  // unlock WebAudio on the first user gesture of ANY kind (scroll/wheel/touch/click/key) so scroll ticks work
+  function unlockAudio(){ try{ var c=ctx(); if(c.state==='suspended') c.resume(); }catch(e){} }
+  ['pointerdown','keydown','wheel','touchstart'].forEach(function(ev){ addEventListener(ev, unlockAudio, {passive:true}); });
   function tick(f,v){
     if(!soundOn) return;
     try{
@@ -65,7 +68,7 @@
       rail.classList.add('active'); clearTimeout(hideT); hideT=setTimeout(function(){ rail.classList.remove('active'); },900);
       var mid=(scrollY||pageYOffset)+innerHeight*0.4, idx=0;
       for(var i=0;i<sections.length;i++){ if(sections[i].offsetTop<=mid) idx=i; }
-      if(idx!==last){ if(last!==-1) tick(500,.05); last=idx; }   // soft tick only when sound is on
+      if(idx!==last){ if(last!==-1) tick(520,.09); last=idx; }   // soft tick on section change (sound on)
     }
     addEventListener('scroll', upd, {passive:true}); addEventListener('resize', upd); upd();
   })();
