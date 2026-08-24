@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tata 1mg — Redesign Concept · Dhruv Singh</title>
+<meta name="description" content="A self-initiated, unaffiliated redesign concept for an online pharmacy — calmer, more trustworthy, conversion-aware." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="trail"></canvas>
+  <div id="dot" class="cur" aria-hidden="true"></div>
+  <div id="ring" class="cur" aria-hidden="true"></div>
+
+  <header id="hdr"><div class="wrap"><nav>
+    <a class="brand" href="index.html">Dhruv <em>Singh</em></a>
+    <div class="nav-right">
+      <div class="navlinks" id="navlinks"><a href="index.html#work">Work</a><a href="index.html#contact">Contact</a></div>
+      <button class="sound-toggle" id="sound" aria-pressed="false"><span class="dotled"></span><span id="sound-label">Sound off</span></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav></div></header>
+
+  <main>
+    <section class="case-hero"><div class="wrap">
+      <a class="back-link reveal" href="index.html#work">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to work</a>
+      <span class="eyebrow-label reveal" style="display:block;margin-top:24px">Concept · Self-initiated · Unaffiliated</span>
+      <h1 class="reveal">Tata 1mg — Redesign</h1>
+      <p class="lead reveal">A speculative redesign of India's largest online pharmacy: take a busy, banner-heavy marketplace and turn it into something calm, trustworthy, and quietly efficient — the way you'd want your family's medicines handled.</p>
+      <dl class="case-meta reveal">
+        <div><dt>Type</dt><dd>Concept redesign</dd></div>
+        <div><dt>Sector</dt><dd>Healthcare · Pharmacy</dd></div>
+        <div><dt>Focus</dt><dd>Trust &amp; clarity</dd></div>
+        <div><dt>Status</dt><dd>Unaffiliated concept</dd></div>
+      </dl>
+    </div></section>
+
+    <section class="case-body"><div class="wrap">
+      <div class="case-block reveal" style="max-width:62ch;margin-bottom:clamp(40px,6vw,64px)">
+        <h2>The <em>problem</em></h2>
+        <p>The live site does a lot — medicines, lab tests, consults, care plans — but it shows all of it at once: stacked promo banners, competing colours, and pop-ups that cover the page on load. For a category built entirely on <strong>trust</strong>, the visual noise works against it.</p>
+      </div>
+
+      <div class="beforeafter">
+        <figure class="ba-item ba-before reveal">
+          <figcaption><span class="pin">Before</span> Their current homepage</figcaption>
+          <img src="assets/1mg-card.jpg" width="1600" height="1000" loading="lazy" alt="Tata 1mg current homepage — dense banners, promos and a busy 'shop by health concern' grid" />
+        </figure>
+        <figure class="ba-item ba-after reveal">
+          <figcaption><span class="pin">After</span> My redesign concept</figcaption>
+          <img src="assets/after-1mg.jpg" width="1600" height="1000" loading="lazy" alt="Redesigned 1mg homepage — calm clinical layout, single clear search, one-tap reorder and a focused trust strip" />
+          <a class="view-live" href="mockup-1mg.html" target="_blank" rel="noopener">Open the live redesign
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </figure>
+      </div>
+
+      <div class="case-cols" style="margin-top:clamp(48px,7vw,80px)">
+        <div class="case-block reveal">
+          <h2>What <em>changed</em></h2>
+          <p>One calm surface instead of five competing ones. A single, prominent search — the #1 pharmacy task — with prescription upload and lab tests one tap away. Health-green signals trust; whitespace signals care.</p>
+          <p>A dedicated <strong>"Reorder in one tap"</strong> panel surfaces the real repeat behaviour of pharmacy users — chronic meds are refilled monthly — turning a chore into a single tap and lifting repeat orders.</p>
+          <div class="stack-row">
+            <span>Clinical palette</span><span>WCAG contrast</span><span>Reorder flow</span><span>Trust strip</span><span>Consult band</span>
+          </div>
+        </div>
+        <div class="case-block reveal">
+          <h2>Why it matters for <em>pharma</em></h2>
+          <p>Regulated healthcare brands live or die on credibility. This redesign shows the exact instincts a pharma client needs: reduce cognitive load, foreground trust signals, respect accessibility, and still keep the commercial engine (reorders, care plans, consults) working hard.</p>
+          <p>Calm is not the absence of conversion — here, it <em>is</em> the conversion strategy.</p>
+        </div>
+      </div>
+
+      <div class="case-block reveal" style="max-width:60ch;margin-top:clamp(40px,6vw,64px)">
+        <h2>Note</h2>
+        <p>This is a self-initiated concept and is <strong>not affiliated with or endorsed by Tata 1mg</strong>. The "before" is their live site, shown for comparison; the "after" is my own illustrative design.</p>
+      </div>
+    </div></section>
+  </main>
+
+  <section id="contact" class="contact" data-dark><div class="wrap">
+    <span class="eyebrow-label" style="color:rgba(243,238,228,.5)">Let's work together</span>
+    <h2 style="margin-top:18px">Building something in <em>healthcare?</em></h2>
+    <a class="mailto" href="mailto:dhruvdesmond@gmail.com" data-mag>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      dhruvdesmond@gmail.com</a>
+    <p class="sub"><a href="index.html#work" style="color:var(--accent);border-bottom:1px solid rgba(180,83,9,.4)">← See more work</a></p>
+  </div></section>
+
+  <footer><div class="wrap"><span>© 2026 Dhruv Singh</span><span>1mg redesign concept · unaffiliated</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
