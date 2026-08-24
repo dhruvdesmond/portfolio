@@ -58,7 +58,8 @@
     document.body.appendChild(rail);
     var fill=rail.querySelector('.sr-fill'), dot=rail.querySelector('.sr-dot'), pct=rail.querySelector('.sr-pct');
     var sections=[].slice.call(document.querySelectorAll('section, .statement'));
-    var last=-1, hideT;
+    var last=-1, hideT, lastTick=0;
+    function now(){ return (window.performance && performance.now) ? performance.now() : +new Date(); }
     function upd(){
       var max=document.documentElement.scrollHeight-innerHeight;
       var prog=max>0 ? Math.min(1,Math.max(0,(scrollY||pageYOffset)/max)) : 0;
@@ -66,9 +67,14 @@
       dot.style.top=(prog*100)+'%'; pct.style.top=(prog*100)+'%';
       pct.textContent=Math.round(prog*100)+'%';
       rail.classList.add('active'); clearTimeout(hideT); hideT=setTimeout(function(){ rail.classList.remove('active'); },900);
-      var mid=(scrollY||pageYOffset)+innerHeight*0.4, idx=0;
-      for(var i=0;i<sections.length;i++){ if(sections[i].offsetTop<=mid) idx=i; }
-      if(idx!==last){ if(last!==-1) tick(520,.09); last=idx; }   // soft tick on section change (sound on)
+      // active section by viewport position (robust regardless of offsetParent)
+      var threshold=innerHeight*0.42, idx=0;
+      for(var i=0;i<sections.length;i++){ if(sections[i].getBoundingClientRect().top<=threshold) idx=i; }
+      if(idx!==last){
+        // only tick when we've genuinely settled into a NEW section, throttled so boundary jitter can't machine-gun
+        if(last!==-1 && now()-lastTick>220){ tick(520,.07); lastTick=now(); }
+        last=idx;
+      }
     }
     addEventListener('scroll', upd, {passive:true}); addEventListener('resize', upd); upd();
   })();
