@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<script>(function(){try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -23,6 +24,7 @@
         <a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
       </div>
       <button class="sound-toggle on" id="sound" aria-pressed="true"><span class="dotled"></span><span id="sound-label">Sound on</span></button>
+      <button class="theme-toggle" id="theme" aria-label="Switch to dark mode"><svg class="ic-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"/></svg></button>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -32,7 +34,7 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
-      <span class="eyebrow reveal"><span class="pulse"></span> Available for freelance · Design · Build · Deploy</span>
+      <span class="eyebrow reveal"><span class="pulse"></span> Available for freelance<span class="sm-hide"> · Design · Build · Deploy</span></span>
       <h1 class="reveal">Websites people <em>actually trust.</em></h1>
       <p class="lead reveal">I'm Dhruv — a full-stack developer &amp; designer who takes projects end-to-end: websites, online stores, dashboards, and apps. Frontend, backend, and deployment — designed, built, and shipped.</p>
       <div class="cta-row reveal">

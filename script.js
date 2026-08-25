@@ -66,6 +66,19 @@
   }
   addEventListener('pointerdown', function(){ tick(700,.12); }, {passive:true});
 
+  /* dark / light theme toggle (persisted; initial theme set inline in <head> to avoid flash) */
+  var themeBtn=document.getElementById('theme');
+  if(themeBtn){
+    function updTheme(){ var dark=document.documentElement.getAttribute('data-theme')==='dark'; themeBtn.setAttribute('aria-label', dark?'Switch to light mode':'Switch to dark mode'); themeBtn.setAttribute('aria-pressed', dark?'true':'false'); }
+    updTheme();
+    themeBtn.addEventListener('click', function(){
+      var dark=document.documentElement.getAttribute('data-theme')==='dark', nt=dark?'light':'dark';
+      document.documentElement.setAttribute('data-theme', nt);
+      try{ localStorage.setItem('theme', nt); }catch(e){}
+      updTheme(); tick(dark?720:520,.1);
+    });
+  }
+
   /* scroll progress rail (right side) + soft section-change tick */
   (function(){
     var rail=document.createElement('div'); rail.className='scroll-rail'; rail.setAttribute('aria-hidden','true');
