@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>wealtr — Case Study · Dhruv Singh</title>
+<meta name="description" content="wealtr case study — a personal-finance app that turns a whole financial life into one live net-worth number, on every device." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="trail"></canvas>
+  <div id="dot" class="cur" aria-hidden="true"></div>
+  <div id="ring" class="cur" aria-hidden="true"></div>
+
+  <header id="hdr"><div class="wrap"><nav>
+    <a class="brand" href="index.html">Dhruv <em>Singh</em></a>
+    <div class="nav-right">
+      <div class="navlinks" id="navlinks"><a href="index.html#work">Work</a><a href="index.html#contact">Contact</a></div>
+      <button class="sound-toggle on" id="sound" aria-pressed="true"><span class="dotled"></span><span id="sound-label">Sound on</span></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav></div></header>
+
+  <main>
+    <section class="case-hero"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
+      <a class="back-link reveal" href="index.html#work">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to work</a>
+      <span class="eyebrow-label reveal" style="display:block;margin-top:24px">Case study · Live product</span>
+      <h1 class="reveal">wealtr</h1>
+      <p class="lead reveal">A personal-finance app that pulls a whole financial life — crypto, equities, ESOPs, unlisted shares, EPF and bank balances — into one live net-worth number. Designed and built end-to-end, shipped on iOS, Android and web.</p>
+      <dl class="case-meta reveal">
+        <div><dt>Role</dt><dd>Design &amp; full-stack</dd></div>
+        <div><dt>Type</dt><dd>Finance app</dd></div>
+        <div><dt>Platforms</dt><dd>iOS · Android · Web</dd></div>
+        <div><dt>Status</dt><dd>Live</dd></div>
+      </dl>
+    </div></section>
+
+    <div class="wrap">
+      <figure class="case-figure reveal">
+        <img src="assets/wealtr-card.jpg" width="1600" height="1000" alt="wealtr dashboard — net-worth overview with allocation donut, lifetime chart and a recent-activity feed" loading="lazy" />
+        <figcaption>Dashboard — net-worth hero, target-vs-actual allocation, lifetime chart and activity feed</figcaption>
+      </figure>
+    </div>
+
+    <section class="case-body"><div class="wrap">
+      <div class="case-cols">
+        <div class="case-block reveal">
+          <h2>The <em>brief</em></h2>
+          <p>Most people's money is scattered across a dozen apps — an exchange here, a broker there, EPF and bank statements nobody opens. The real number, "what am I actually worth?", lives in a spreadsheet, if anywhere.</p>
+          <p>wealtr had to collapse all of that into one calm, trustworthy place — and feel less like a trading terminal, more like something you'd actually want to open.</p>
+        </div>
+        <div class="case-block reveal">
+          <h2>The <em>approach</em></h2>
+          <p>An editorial finance system: a serif net-worth hero, generous whitespace, and dense data organised so it reads at a glance instead of overwhelming.</p>
+          <p>One design language stretched across a web dashboard and native-feeling iOS &amp; Android apps — same clarity, adapted per device.</p>
+          <div class="stack-row">
+            <span>Full-stack</span><span>iOS + Android</span><span>Data viz</span><span>Live sync</span><span>Forecasting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-block reveal" style="margin-top:clamp(48px,7vw,80px);max-width:64ch">
+        <span class="case-eyebrow">The goals</span>
+        <h2>What it had to <em>do</em></h2>
+        <ul class="points" style="margin-top:20px">
+          <li><strong>One number, zero spreadsheets</strong> — a whole financial life in a single live net-worth figure.</li>
+          <li><strong>Make dense data calm</strong> — finance that reads as editorial, not a Bloomberg terminal.</li>
+          <li><strong>Work everywhere</strong> — desktop, iOS and Android from one design system.</li>
+          <li><strong>Look ahead</strong> — don't just report the past; forecast the future number.</li>
+        </ul>
+      </div>
+
+      <div class="case-block reveal" style="margin-top:clamp(48px,7vw,80px)">
+        <span class="case-eyebrow">How it came together</span>
+        <h2>The <em>process</em></h2>
+      </div>
+      <div class="process reveal">
+        <div class="process-step"><div class="n">1</div><h4>Aggregate</h4><p>Pulled crypto exchanges, equities, mutual funds, ESOPs, EPF, unlisted shares and bank balances into one model.</p></div>
+        <div class="process-step"><div class="n">2</div><h4>Normalise</h4><p>Reduced everything to a single live net-worth number with allocation, history and change over time.</p></div>
+        <div class="process-step"><div class="n">3</div><h4>Visualise</h4><p>A calm dashboard — net-worth hero, target-vs-actual allocation donut, lifetime chart and activity feed.</p></div>
+        <div class="process-step"><div class="n">4</div><h4>Ship</h4><p>Native-feeling apps on iOS &amp; Android, plus a wealth-forecast that projects your future number before you move.</p></div>
+      </div>
+
+      <div class="case-block reveal" style="margin-top:clamp(48px,7vw,80px)">
+        <span class="case-eyebrow">On every device</span>
+        <h2>The same clarity, in your <em>pocket</em></h2>
+      </div>
+      <figure class="case-figure reveal" style="margin-top:8px">
+        <img src="assets/wealtr-mobile.jpg" width="416" height="900" style="max-width:320px;margin:0 auto;border-radius:22px" alt="wealtr mobile app — net-worth card, time-range tabs, quick actions and a wealth-forecast card, with a bottom tab bar" loading="lazy" />
+        <figcaption>Mobile — net-worth card, quick actions and the wealth-forecast, with native bottom navigation</figcaption>
+      </figure>
+
+      <div class="case-cols" style="margin-top:clamp(48px,7vw,80px)">
+        <div class="case-block reveal">
+          <h2>What's <em>inside</em></h2>
+          <ul class="points">
+            <li>Net-worth overview with target-vs-actual <strong>allocation</strong></li>
+            <li>Lifetime net-worth <strong>chart</strong> with range switching</li>
+            <li>Crypto, equities, mutual funds, ESOPs, RSU, EPF, unlisted &amp; bank</li>
+            <li>Expenses, subscriptions and credit-card tracking</li>
+            <li><strong>Wealth forecast</strong> — project net worth before you make a move</li>
+          </ul>
+        </div>
+        <div class="case-block reveal">
+          <h2>Why it <em>matters</em></h2>
+          <p>wealtr is the clearest proof of the full-stack range: data pipelines, a real design system, native apps, and data visualisation that stays calm under a lot of information.</p>
+          <p>It's exactly the shape of work a fintech, analytics or dashboard-heavy product needs — end to end, from the query to the pixel.</p>
+          <a class="feature-link" href="https://wealtr-fe-production.up.railway.app" target="_blank" rel="noopener" data-mag style="margin-top:6px">Visit live
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+
+      <div class="case-block reveal" style="max-width:60ch;margin-top:clamp(40px,6vw,64px)">
+        <h2>Note</h2>
+        <p>The screens shown use wealtr's built-in <strong>demo account</strong> — real UI, seeded sample data, and <strong>no personal financial information</strong>.</p>
+      </div>
+    </div></section>
+  </main>
+
+  <section id="contact" class="contact" data-dark><div class="wrap">
+    <span class="eyebrow-label" style="color:rgba(243,238,228,.5)">Let's work together</span>
+    <h2 style="margin-top:18px">Building a <em>data product?</em></h2>
+    <a class="mailto" href="mailto:dhruvdesmond@gmail.com" data-mag>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      dhruvdesmond@gmail.com</a>
+    <p class="sub"><a href="index.html#work" style="color:var(--accent);border-bottom:1px solid rgba(180,83,9,.4)">← See more work</a></p>
+  </div></section>
+
+  <footer><div class="wrap"><span>© 2026 Dhruv Singh · <a href="https://www.linkedin.com/in/dhruv-singh-nunia/" target="_blank" rel="noopener">LinkedIn ↗</a></span><span>wealtr case study</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
