@@ -79,6 +79,28 @@
     });
   }
 
+  /* lead form — AJAX submit to FormSubmit (no backend, goes to email) */
+  var leadForm=document.getElementById('leadForm');
+  if(leadForm){
+    var lfStatus=leadForm.querySelector('.lf-status'), lfBtn=leadForm.querySelector('.lf-submit');
+    leadForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!leadForm.checkValidity()){ leadForm.reportValidity(); return; }
+      lfStatus.className='lf-status'; lfStatus.textContent='Sending…'; lfBtn.disabled=true;
+      fetch(leadForm.action, { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(leadForm) })
+        .then(function(r){ if(!r.ok) throw new Error('http'); return r.json().catch(function(){ return {}; }); })
+        .then(function(){
+          lfBtn.disabled=false; lfStatus.className='lf-status ok';
+          lfStatus.textContent="Thanks — got it. I'll reply within a day.";
+          leadForm.reset(); tick(660,.1);
+        })
+        .catch(function(){
+          lfBtn.disabled=false; lfStatus.className='lf-status err';
+          lfStatus.textContent="Couldn't send — please email dhruvdesmond@gmail.com directly.";
+        });
+    });
+  }
+
   /* scroll progress rail (right side) + soft section-change tick */
   (function(){
     var rail=document.createElement('div'); rail.className='scroll-rail'; rail.setAttribute('aria-hidden','true');
