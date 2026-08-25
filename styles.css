@@ -12,7 +12,7 @@
 }
 :root[data-theme="dark"] header{background:rgba(23,20,15,.72)}
 :root[data-theme="dark"] .tag-concept,:root[data-theme="dark"] .feature-tag.concept{background:#2C2820;color:var(--muted)}
-:root[data-theme="dark"] .svc .ic{background:#17140F}
+:root[data-theme="dark"] .svc .ic,:root[data-theme="dark"] .panel-card .ic{background:#17140F}
 :root[data-theme="dark"] .portrait{background:radial-gradient(120% 90% at 30% 15%,#241f18,#17130d)}
 /* theme toggle button */
 .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);background:var(--surface);border-radius:999px;color:var(--muted);transition:border-color .2s,color .2s}
@@ -257,6 +257,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .case-meta div:last-child{border-right:none}
 .case-meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 6px}
 .case-meta dd{margin:0;font-weight:600;font-size:16px}
+@media(max-width:600px){
+  .case-meta{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;
+    scroll-padding-left:24px;margin-inline:-24px;padding-inline:24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .case-meta::-webkit-scrollbar{display:none}
+  .case-meta div{flex:0 0 auto;min-width:130px;padding:16px 22px 16px 0;scroll-snap-align:start}
+  .case-meta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+}
 .case-figure{margin:0}
 .case-figure img{width:100%;height:auto;display:block;border-radius:18px;border:1px solid var(--line);box-shadow:0 30px 60px -32px rgba(33,28,22,.32)}
 .case-figure figcaption{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
@@ -314,6 +321,23 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .callout{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:8px 0}
 .callout p{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,28px);line-height:1.35;color:var(--fg);margin:0;max-width:26ch}
 .stack-row span{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--surface)}
+
+/* admin-panel module grid */
+.panel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+.panel-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 22px 24px}
+.panel-card .ic{width:38px;height:38px;border-radius:11px;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;color:var(--accent-ink);margin-bottom:14px}
+.panel-card h4{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 7px}
+.panel-card p{font-size:14.5px;color:var(--muted);margin:0;line-height:1.55}
+@media(max-width:900px){.panel-grid{grid-template-columns:1fr 1fr}}
+/* on phones the six cards become a swipeable rail rather than 1.8 screens of stacking:
+   cards sit at 78% so the next one peeks, which is what signals it scrolls */
+@media(max-width:600px){
+  .panel-grid{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+    scroll-padding-left:24px;margin-inline:-24px;padding:4px 24px 16px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .panel-grid::-webkit-scrollbar{display:none}
+  .panel-card{flex:0 0 78%;scroll-snap-align:start}
+  .panel-grid:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:16px}
+}
 
 /* ---------- scroll progress rail ---------- */
 .scroll-rail{position:fixed;right:16px;top:50%;transform:translateY(-50%);height:38vh;z-index:90;pointer-events:none;display:flex;align-items:stretch}
