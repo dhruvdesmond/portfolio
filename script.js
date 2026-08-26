@@ -198,22 +198,30 @@
     if(document.readyState==='complete') reportNav();
     else addEventListener('load', function(){ setTimeout(reportNav,0); });
 
-    /* Largest Contentful Paint */
+    /* Largest Contentful Paint (keep best candidate) + Cumulative Layout Shift */
+    var lcpVal=0, cls=0;
     try{
       new PerformanceObserver(function(list){
         var es=list.getEntries(), e=es[es.length-1];
-        set('m-lcp', ms(e.renderTime||e.loadTime||e.startTime));
+        lcpVal=e.renderTime||e.loadTime||e.startTime||lcpVal;
+        set('m-lcp', ms(lcpVal));
       }).observe({type:'largest-contentful-paint', buffered:true});
-    }catch(e){ set('m-lcp','n/a'); }
-
-    /* Cumulative Layout Shift */
+    }catch(e){}
     try{
-      var cls=0;
       new PerformanceObserver(function(list){
         list.getEntries().forEach(function(e){ if(!e.hadRecentInput) cls+=e.value; });
         set('m-cls', cls.toFixed(3));
       }).observe({type:'layout-shift', buffered:true});
-    }catch(e){ set('m-cls','n/a'); }
+    }catch(e){}
+    /* finalize once the page settles so fields never hang on "measuring…"
+       (0 layout shifts = observer never fires; LCP may not emit in a bg tab) */
+    function finalizeVitals(){
+      set('m-cls', cls.toFixed(3));
+      if(lcpVal>0){ set('m-lcp', ms(lcpVal)); }
+      else{ var fcp=performance.getEntriesByName('first-contentful-paint')[0]; set('m-lcp', fcp?ms(fcp.startTime):'n/a'); }
+    }
+    if(document.readyState==='complete') setTimeout(finalizeVitals,1500);
+    else addEventListener('load', function(){ setTimeout(finalizeVitals,1500); });
 
     /* live API round-trip — real request, real latency, real data */
     (function(){
