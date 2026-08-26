@@ -179,4 +179,59 @@
       setTimeout(function(){ r.remove(); },600);
     },{passive:true});
   }
+
+  /* engineering panel — every value read live at runtime, never hard-coded */
+  if(document.getElementById('engineering')){
+    function set(id,txt){ var el=document.getElementById(id); if(el) el.textContent=txt; }
+    function ms(n){ return Math.round(n)+' ms'; }
+
+    /* this page — Navigation Timing (load, TTFB, transferred weight) */
+    function reportNav(){
+      try{
+        var nav=performance.getEntriesByType('navigation')[0];
+        if(nav){ set('m-load', ms(nav.loadEventEnd||nav.duration)); set('m-ttfb', ms(nav.responseStart)); }
+        var res=performance.getEntriesByType('resource'), bytes=(nav&&nav.transferSize)||0;
+        for(var i=0;i<res.length;i++){ bytes+=res[i].transferSize||0; }
+        set('m-weight', (bytes/1024).toFixed(0)+' KB');
+      }catch(e){}
+    }
+    if(document.readyState==='complete') reportNav();
+    else addEventListener('load', function(){ setTimeout(reportNav,0); });
+
+    /* Largest Contentful Paint */
+    try{
+      new PerformanceObserver(function(list){
+        var es=list.getEntries(), e=es[es.length-1];
+        set('m-lcp', ms(e.renderTime||e.loadTime||e.startTime));
+      }).observe({type:'largest-contentful-paint', buffered:true});
+    }catch(e){ set('m-lcp','n/a'); }
+
+    /* Cumulative Layout Shift */
+    try{
+      var cls=0;
+      new PerformanceObserver(function(list){
+        list.getEntries().forEach(function(e){ if(!e.hadRecentInput) cls+=e.value; });
+        set('m-cls', cls.toFixed(3));
+      }).observe({type:'layout-shift', buffered:true});
+    }catch(e){ set('m-cls','n/a'); }
+
+    /* live API round-trip — real request, real latency, real data */
+    (function(){
+      var t0=performance.now?performance.now():+new Date();
+      fetch('https://api.github.com/repos/dhruvdesmond/portfolio/commits?per_page=1',{headers:{'Accept':'application/vnd.github+json'}})
+        .then(function(r){
+          set('a-ms', ms((performance.now?performance.now():+new Date())-t0));
+          set('a-status', r.status+(r.ok?' OK':''));
+          var link=r.headers.get('Link');
+          if(link){ var m=link.match(/[?&]page=(\d+)>;\s*rel="last"/); if(m) set('a-commits', m[1]); }
+          else set('a-commits','1');
+          return r.json();
+        })
+        .then(function(data){
+          var c=Array.isArray(data)&&data[0]&&data[0].commit&&data[0].commit.author;
+          if(c) set('a-push', new Date(c.date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}));
+        })
+        .catch(function(){ set('a-status','offline'); set('a-ms','—'); });
+    })();
+  }
 })();

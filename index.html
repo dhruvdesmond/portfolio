@@ -45,6 +45,13 @@
       <div class="scrollcue reveal"><span class="bar"></span> SCROLL TO EXPLORE</div>
     </div></section>
 
+    <!-- PROOF STRIP — verifiable facts only -->
+    <section class="proof"><div class="wrap proof-row">
+      <div class="proof-item reveal"><span class="proof-n">2</span><span class="proof-l">products live in production<br><a href="https://www.goatszn.com" target="_blank" rel="noopener">goatszn.com</a> · wealtr</span></div>
+      <div class="proof-item reveal"><span class="proof-n">iOS <i>+</i> Android</span><span class="proof-l">wealtr shipped to both stores from one codebase</span></div>
+      <div class="proof-item reveal"><span class="proof-n">End&#8209;to&#8209;end</span><span class="proof-l">design · frontend · backend · database · deploy</span></div>
+    </div></section>
+
     <!-- WORK -->
     <section id="work"><div class="wrap">
       <div class="sec-head">
@@ -185,6 +192,40 @@
         </div>
       </div>
     </div></section>
+
+    <!-- ENGINEERING, MEASURED — live numbers, nothing hard-coded -->
+    <section id="engineering" class="eng"><div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title reveal">Engineering, <em>measured.</em></h2>
+        <span class="eyebrow-label reveal">04 — Not claimed, measured</span>
+      </div>
+      <p class="eng-intro reveal">Anyone can write "fast" and "full-stack" on a page. These two panels don't say it — they show it, live. The left one measures <em>this very page</em> as it renders in your browser; the right one fires a real API request and times the round-trip. Every number is read at runtime, not typed in by me.</p>
+      <div class="eng-grid">
+        <article class="eng-card reveal" aria-live="polite">
+          <header class="eng-card-h"><span class="eng-dot"></span> This page · measured in your browser</header>
+          <ul class="eng-stats">
+            <li><span class="eng-k">Loaded in</span><span class="eng-v" id="m-load">measuring…</span></li>
+            <li><span class="eng-k">Largest paint <span class="eng-sub">LCP</span></span><span class="eng-v" id="m-lcp">measuring…</span></li>
+            <li><span class="eng-k">Layout shift <span class="eng-sub">CLS</span></span><span class="eng-v" id="m-cls">measuring…</span></li>
+            <li><span class="eng-k">Time to first byte</span><span class="eng-v" id="m-ttfb">measuring…</span></li>
+            <li><span class="eng-k">Total page weight</span><span class="eng-v" id="m-weight">measuring…</span></li>
+          </ul>
+          <a class="eng-verify" href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fdhruvdesmond.github.io%2Fportfolio%2F" target="_blank" rel="noopener" data-mag>Don't take my word — audit it on PageSpeed Insights
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+        <article class="eng-card reveal" aria-live="polite">
+          <header class="eng-card-h"><span class="eng-dot"></span> Live API round-trip</header>
+          <code class="eng-req">GET api.github.com/repos/dhruvdesmond/portfolio</code>
+          <ul class="eng-stats">
+            <li><span class="eng-k">Response</span><span class="eng-v" id="a-status">requesting…</span></li>
+            <li><span class="eng-k">Round-trip latency</span><span class="eng-v" id="a-ms">—</span></li>
+            <li><span class="eng-k">Commits shipped</span><span class="eng-v" id="a-commits">—</span></li>
+            <li><span class="eng-k">Last deploy</span><span class="eng-v" id="a-push">—</span></li>
+          </ul>
+          <p class="eng-note">A real network request, paginated response parsed for the commit count, latency timed with the Performance API — the same fetch-parse-measure loop behind every dashboard and integration I build.</p>
+        </article>
+      </div>
+    </div></section>
   </main>
 
   <!-- PHILOSOPHY (dark — cursor trail turns cream here) -->
@@ -192,6 +233,37 @@
     <p class="statement-kicker reveal">Philosophy</p>
     <p class="statement-big reveal">Trust is a design decision. I build it into every pixel — <em>speed, clarity, and craft</em> that any brand can stand behind.</p>
   </div></section>
+
+  <!--
+    ============================================================================
+    TESTIMONIALS — READY TO GO LIVE, INTENTIONALLY LEFT COMMENTED OUT.
+    Drop in REAL quotes only. Fabricated testimonials on a commercial site are
+    unlawful (India CCPA fake-review guidelines 2022; US FTC endorsement rules)
+    and one prospect quoting a review that never happened ends the deal. The
+    moment you finish your next project, ask the client for two lines + their
+    name/role/company, paste below, and delete this comment wrapper.
+    ============================================================================
+  <section id="voices" class="voices"><div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title reveal">In their <em>words.</em></h2>
+      <span class="eyebrow-label reveal">05 — Clients</span>
+    </div>
+    <div class="voices-grid">
+      <figure class="voice reveal">
+        <blockquote>[REAL QUOTE — e.g. "He rebuilt our storefront in two weeks and our add-to-cart rate jumped. He owns the whole thing, design to deploy, so there's no back-and-forth."]</blockquote>
+        <figcaption><span class="v-name">[Client name]</span><span class="v-role">[Role, Company]</span></figcaption>
+      </figure>
+      <figure class="voice reveal">
+        <blockquote>[REAL QUOTE — a line about reliability, speed, or how you handled the backend/data.]</blockquote>
+        <figcaption><span class="v-name">[Client name]</span><span class="v-role">[Role, Company]</span></figcaption>
+      </figure>
+      <figure class="voice reveal">
+        <blockquote>[REAL QUOTE — a line about the working relationship or the result.]</blockquote>
+        <figcaption><span class="v-name">[Client name]</span><span class="v-role">[Role, Company]</span></figcaption>
+      </figure>
+    </div>
+  </div></section>
+  -->
 
   <!-- CONTACT (dark) -->
   <section id="contact" class="contact" data-dark><div class="wrap">
