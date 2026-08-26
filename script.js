@@ -213,12 +213,29 @@
         set('m-cls', cls.toFixed(3));
       }).observe({type:'layout-shift', buffered:true});
     }catch(e){}
-    /* finalize once the page settles so fields never hang on "measuring…"
-       (0 layout shifts = observer never fires; LCP may not emit in a bg tab) */
+    /* LCP & CLS are Chromium-only. On Safari/Firefox we must NOT hang on
+       "measuring…" nor fabricate a 0.000 CLS — degrade each row to a real,
+       correctly-relabelled Navigation-Timing metric instead. */
+    var clsOk = !!(window.PerformanceObserver && PerformanceObserver.supportedEntryTypes && PerformanceObserver.supportedEntryTypes.indexOf('layout-shift')>-1);
+    function relabel(id,name,tag){
+      var li=document.getElementById(id).closest('li'); if(!li) return;
+      var n=li.querySelector('.eng-name'), s=li.querySelector('.eng-sub');
+      if(n&&name) n.textContent=name; if(s&&tag) s.textContent=tag;
+    }
     function finalizeVitals(){
-      set('m-cls', cls.toFixed(3));
+      var nav=performance.getEntriesByType('navigation')[0];
+      /* LCP -> FCP -> DOMContentLoaded, always a real, honestly-labelled number */
       if(lcpVal>0){ set('m-lcp', ms(lcpVal)); }
-      else{ var fcp=performance.getEntriesByName('first-contentful-paint')[0]; set('m-lcp', fcp?ms(fcp.startTime):'n/a'); }
+      else{
+        var fcp=performance.getEntriesByName('first-contentful-paint')[0];
+        if(fcp){ set('m-lcp', ms(fcp.startTime)); relabel('m-lcp','First paint','FCP'); }
+        else if(nav){ set('m-lcp', ms(nav.domContentLoadedEventEnd)); relabel('m-lcp','DOM ready','DCL'); }
+        else set('m-lcp','n/a');
+      }
+      /* CLS only if this browser actually measures it; else show DOM-interactive */
+      if(clsOk){ set('m-cls', cls.toFixed(3)); }
+      else if(nav){ set('m-cls', ms(nav.domInteractive)); relabel('m-cls','DOM interactive','DOM'); }
+      else set('m-cls','n/a');
     }
     if(document.readyState==='complete') setTimeout(finalizeVitals,1500);
     else addEventListener('load', function(){ setTimeout(finalizeVitals,1500); });
