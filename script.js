@@ -81,6 +81,29 @@
   }
   addEventListener('pointerdown', function(){ tick(700,.12); }, {passive:true});
 
+  /* scroll-driven notes — a soft pentatonic phrase that tracks your scroll:
+     one note per ~100px travelled, pitch rising as you move down the page,
+     volume following scroll speed. Distance-accumulated + rate-capped so fast
+     flings can't machine-gun. */
+  (function(){
+    var scale=[261.63,293.66,329.63,392.00,440.00,523.25,587.33,659.25]; // C major pentatonic
+    var acc=0, lastY=scrollY||pageYOffset, lastT=0, step=100;
+    addEventListener('scroll', function(){
+      if(!soundOn) return;
+      var y=scrollY||pageYOffset, dy=y-lastY; lastY=y;
+      acc+=Math.abs(dy);
+      if(acc<step) return;
+      acc=0;
+      var t=(window.performance&&performance.now)?performance.now():+new Date();
+      if(t-lastT<55) return;          // cap density on momentum/flings
+      lastT=t;
+      var vol=Math.min(0.15, 0.05+Math.abs(dy)/80*0.10);        // speed -> loudness (subtle)
+      var max=document.documentElement.scrollHeight-innerHeight;
+      var prog=max>0?Math.min(1,Math.max(0,y/max)):0;           // position -> pitch
+      tick(scale[Math.min(scale.length-1, Math.round(prog*(scale.length-1)))], vol);
+    }, {passive:true});
+  })();
+
   /* dark / light theme toggle (persisted; initial theme set inline in <head> to avoid flash) */
   var themeBtn=document.getElementById('theme');
   if(themeBtn){
