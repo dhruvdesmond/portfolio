@@ -25,25 +25,40 @@
   var soundOn=true, actx=null;
   var btn=document.getElementById('sound'), lbl=document.getElementById('sound-label');
   if(btn){ btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); if(lbl) lbl.textContent='Sound on'; }
-  function ctx(){ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); return actx; }
-  // Browsers block audio until the first user gesture. On that first gesture (scroll/wheel/touch/click/key)
-  // ARM WebAudio immediately with a silent 1-sample buffer + resume, so ticks are audible from the first scroll
-  // instead of being lost while the async resume() is still waking the engine.
-  var unlocked=false;
+  function ctx(){ if(!actx){ try{ actx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return actx; }
+  // WebAudio only unlocks after a real "user-activation" gesture — pointerdown /
+  // mousedown / touchstart / keydown / click. Wheel & scroll do NOT count (HTML
+  // spec), so a fixed setTimeout after a scroll raced the async resume() and
+  // ticked while still suspended = silent. Instead: prime + resume on the first
+  // activation gesture, and chain the "sound is live" cue off resume() so it
+  // fires the instant audio is actually running — queued if not yet unlocked.
+  var unlocked=false, cuePending=false;
+  function activationEvt(t){ return t==='pointerdown'||t==='mousedown'||t==='pointerup'||t==='click'||t==='keydown'||t==='touchstart'; }
+  function flushCue(){ if(cuePending){ cuePending=false; tick(520,.07); } }
   function unlockAudio(e){
-    try{
-      var c=ctx();
-      if(c.state==='suspended') c.resume();
-      if(!unlocked){
-        var buf=c.createBuffer(1,1,22050), src=c.createBufferSource();
-        src.buffer=buf; src.connect(c.destination); src.start(0);
-        unlocked=true;
-        // instant "sound is live" tick on the first scroll/touch (click already ticks via pointerdown)
-        if(e && (e.type==='wheel' || e.type==='scroll' || e.type==='touchstart')){ setTimeout(function(){ tick(520,.07); }, 45); }
-      }
-    }catch(err){}
+    var c=ctx(); if(!c) return;
+    if(!unlocked && e && activationEvt(e.type)){
+      try{ var buf=c.createBuffer(1,1,22050), src=c.createBufferSource(); src.buffer=buf; src.connect(c.destination); src.start(0); }catch(err){}
+      unlocked=true;
+    }
+    if(c.state==='running'){ flushCue(); }
+    else{ try{ c.resume().then(flushCue).catch(function(){}); }catch(err){} }
   }
-  ['pointerdown','keydown','touchstart','wheel','scroll'].forEach(function(ev){ addEventListener(ev, unlockAudio, {passive:true}); });
+  ['pointerdown','mousedown','pointerup','click','keydown','touchstart'].forEach(function(ev){ addEventListener(ev, unlockAudio, {passive:true}); });
+  // First wheel/scroll requests the live cue: plays now if audio is already
+  // running; if the user has ever interacted (sticky activation) a resume lands
+  // it on resolve; otherwise it's queued to fire on their very next gesture.
+  var firstScroll=true;
+  function scrollCue(){
+    if(!firstScroll || !soundOn) return; firstScroll=false;
+    var c=ctx(); if(!c) return;
+    if(c.state==='running'){ tick(520,.07); return; }
+    cuePending=true;
+    var active = navigator.userActivation ? navigator.userActivation.hasBeenActive : unlocked;
+    if(active){ try{ c.resume().then(flushCue).catch(function(){}); }catch(err){} }
+  }
+  addEventListener('wheel', scrollCue, {passive:true});
+  addEventListener('scroll', scrollCue, {passive:true});
   function tick(f,v){
     if(!soundOn) return;
     try{
